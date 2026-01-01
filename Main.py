@@ -1,5 +1,6 @@
 from rank_bm25 import BM25Okapi
-
+from sentence_transformers import SentenceTransformer
+import numpy as np
 
 def main():
 
@@ -19,16 +20,13 @@ def main():
 
     # Tokenize
     tokenized_docs = [doc.lower().split() for doc in documents]
+    #or from langchain_community.retrievers import BM25Retriever
     bm25 = BM25Okapi(tokenized_docs)
     bm25_scores = bm25.get_scores(query.lower().split())
     print("BM25 Scores:", bm25_scores)
 
     #Semantic Embeddings
-    from sentence_transformers import SentenceTransformer
-    import numpy as np
-
     model = SentenceTransformer("all-MiniLM-L6-v2")
-
     doc_embeddings = model.encode(documents)
     query_embedding = model.encode([query])[0]
 
@@ -36,6 +34,7 @@ def main():
     semantic_scores = np.dot(doc_embeddings, query_embedding) / (
             np.linalg.norm(doc_embeddings, axis=1) * np.linalg.norm(query_embedding)
     )
+
 
     print("Semantic Scores:", semantic_scores)
 
