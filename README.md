@@ -1,42 +1,35 @@
-# 🔍 Hybrid Search Engine (BM25 + Semantic Search)
+# 🔍 Hybrid Search Engine (BM25 + Semantic Search + Reranker)
 
-A simple and effective hybrid search pipeline combining **BM25** (lexical search) with **semantic embeddings** to achieve high‑quality retrieval for RAG and information‑retrieval tasks.
+This project demonstrates a complete retrieval pipeline combining:
 
-This project demonstrates how to:
-- Build a BM25 retriever  
-- Build a semantic embedding retriever  
-- Normalize and combine scores  
-- Produce hybrid ranked results  
-- Compare performance between methods  
+- **BM25 lexical search**
+- **Semantic search using sentence embeddings**
+- **Hybrid weighted fusion**
+- **Cross‑encoder reranking for final precision**
+
+This mirrors how modern RAG systems retrieve and refine documents before passing them to an LLM.
 
 ---
 
 ## 🚀 Features
 
-- **BM25 lexical search** using `rank_bm25`  
-- **Semantic search** using sentence embeddings  
-- **Hybrid scoring** (weighted combination)  
-- **Score normalization**  
-- **Easy‑to‑extend pipeline**  
-- **Clean, modular Python code**  
+- BM25 retrieval using `rank_bm25`
+- Semantic similarity using `sentence-transformers`
+- Hybrid scoring (normalized + weighted)
+- Cross‑encoder reranker for final ranking
+- Simple, readable Python implementation
 
 ---
 
-## 📌 Why Hybrid Search?
+## 📌 Why Hybrid + Reranker?
 
-BM25 is great for:
-- exact keyword matching  
-- short queries  
-- sparse text  
+Each retrieval method has strengths:
 
-Semantic search is great for:
-- meaning‑based retrieval  
-- synonyms  
-- long queries  
+- **BM25** → great for exact keyword matching  
+- **Semantic embeddings** → great for meaning and synonyms  
+- **Hybrid fusion** → balances both  
+- **Reranker** → reads *query + document together* and produces the most accurate final ranking  
 
-Hybrid search gives you the **best of both worlds**.
+This pipeline improves both **recall** and **precision**, which is essential for RAG and QA systems.
 
 ---
-
-## 🧠 Architecture Overview
-
