@@ -28,7 +28,19 @@ Each retrieval method has strengths:
 - **BM25** → great for exact keyword matching  
 - **Semantic embeddings** → great for meaning and synonyms  
 - **Hybrid fusion** → balances both  
-- **Reranker** → reads *query + document together* and produces the most accurate final ranking  
+- **Reranker** → reads *query + document together* and produces the most accurate final ranking
+
+  ---
+
+  ## 📊 Performance Benchmarks
+
+| Method              | Recall@4 | Latency (ms) |
+|---------------------|----------|------------- |
+| BM25                | 0.9311   | 0.60         |
+| Semantic Search     | 0.7563   | 21318.5      |
+| Hybrid (BM25+SEM)   | 0.9364   | 0.36         |
+| Reranker (Final)    | 3.1045   | 13124        |
+
 
 This pipeline improves both **recall** and **precision**, which is essential for RAG and QA systems.
 
